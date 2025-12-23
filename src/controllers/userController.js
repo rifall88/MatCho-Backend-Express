@@ -2,7 +2,7 @@ import admin from "../database/firebase.js";
 import User from "../models/userModel.js";
 
 export const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, displayName } = req.body;
   try {
     const userRecord = await admin.auth().createUser({
       email,
@@ -25,6 +25,16 @@ export const register = async (req, res) => {
 
 export const login = async (_req, res) => {
   res.status(200).json({ message: "Firebase handles login via client SDK" });
+};
+
+export const getUserAll = async (_req, res) => {
+  try {
+    const userData = await User.findAll();
+    res.status(200).json(userData);
+  } catch (err) {
+    console.error("Error getting users:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 export const getUser = async (req, res) => {

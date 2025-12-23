@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import cors from "cors";
 import admin from "firebase-admin";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./docs/swagger.json" assert { type: "json" };
 
 dotenv.config();
 const app = express();
@@ -11,6 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRoute);
+
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", (_req, res) => {
   res.send("Welcome to the MatCho API!");
