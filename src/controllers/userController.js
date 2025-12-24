@@ -14,6 +14,7 @@ export const register = async (req, res) => {
       username: userRecord.displayName,
       email: userRecord.email,
       role: "user",
+      deleted_at: null,
     });
 
     res.status(201).json({ message: "Register Success...", data: user });
@@ -35,6 +36,24 @@ export const getUserAll = async (_req, res) => {
     console.error("Error getting users:", err);
     res.status(500).json({ message: "Internal server error" });
   }
+};
+
+export const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userData = await User.findById(id);
+    if (!userData) {
+      return res.status(404).json({ message: "User tidak ditemukan" });
+    }
+    res.status(200).json(userData);
+  } catch (err) {
+    console.error("Error getting user:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
 };
 
 export const getUser = async (req, res) => {

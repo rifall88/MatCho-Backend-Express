@@ -72,7 +72,25 @@
         "summary": "Get all users",
         "security": [{ "bearerAuth": [] }],
         "responses": {
-          "200": { "description": "List semua user." }
+          "200": { "description": "Ok." }
+        }
+      }
+    },
+    "/api/users/by-id/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get user by id",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Ok" }
         }
       }
     },
