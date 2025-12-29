@@ -9,6 +9,7 @@ class User {
 
   static async findAll() {
     return prisma.user.findMany({
+      where: { deleted_at: null },
       select: {
         id: true,
         name: true,
@@ -23,14 +24,14 @@ class User {
 
   static async findById(id) {
     return await prisma.user.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id), deleted_at: null },
     });
   }
 
   static async update(id, userData) {
     try {
       return prisma.user.update({
-        where: { id: parseInt(id) },
+        where: { id: parseInt(id), deleted_at: null },
         data: userData,
       });
     } catch (err) {
@@ -41,10 +42,11 @@ class User {
     }
   }
 
-  static async delete(id) {
+  static async softdelete(id) {
     try {
-      return prisma.user.delete({
+      return prisma.user.update({
         where: { id: parseInt(id), deleted_at: null },
+        data: { deleted_at: new Date(), is_enable: false },
       });
     } catch (err) {
       if ((err.code = "P2025")) {

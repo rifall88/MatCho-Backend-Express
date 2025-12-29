@@ -17,7 +17,7 @@ model User {
   name              String?     @db.VarChar(100)
   username          String?     @unique @db.VarChar(255)
   email             String?     @unique @db.VarChar(255)
-  phone             Int?        @db.Int
+  phone             String?        @db.VarChar(255)
   role              Role        @default(user)
   updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?

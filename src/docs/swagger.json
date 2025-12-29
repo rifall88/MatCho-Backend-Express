@@ -92,12 +92,10 @@
         "responses": {
           "200": { "description": "Ok" }
         }
-      }
-    },
-    "/api/users/{id}": {
+      },
       "put": {
         "tags": ["Users"],
-        "summary": "Update user (admin only)",
+        "summary": "Update user by id",
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -114,22 +112,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": { "type": "string" },
-                  "role": { "type": "string", "enum": ["admin", "user"] }
+                  "name": { "type": "string" },
+                  "phone": { "type": "string" },
+                  "role": { "type": "string", "enum": ["user", "admin"] }
                 },
-                "required": ["username", "role"]
+                "required": ["name", "phone"]
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "User berhasil diperbarui." },
-          "404": { "description": "User tidak ditemukan." }
+          "200": { "description": "Ok" }
         }
       },
       "delete": {
         "tags": ["Users"],
-        "summary": "Delete user (admin only)",
+        "summary": "Delete user by id",
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -140,8 +138,7 @@
           }
         ],
         "responses": {
-          "200": { "description": "User berhasil dihapus." },
-          "404": { "description": "User tidak ditemukan." }
+          "200": { "description": "Ok" }
         }
       }
     }
