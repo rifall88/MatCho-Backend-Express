@@ -100,7 +100,7 @@ export const getUser = async (req, res) => {
     const userRecord = await admin.auth().getUser(uid);
     res.status(200).json({ data: userRecord });
   } catch (err) {
-    console.error("Register error:", err.message);
+    console.error("Getting user error:", err.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };

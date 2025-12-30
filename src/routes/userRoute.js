@@ -14,10 +14,10 @@ const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
-router.get("/all", getUserAll);
-router.get("/by-id/:id", getUserById);
-router.put("/by-id/:id", updateUser);
-router.delete("/by-id/:id", deleteUser);
+router.get("/all", authenticate, getUserAll);
+router.get("/by-id/:id", authenticate, getUserById);
+router.put("/by-id/:id", authenticate, updateUser);
+router.delete("/by-id/:id", authenticate, deleteUser);
 router.get("/", authenticate, getUser);
 
 export default router;
