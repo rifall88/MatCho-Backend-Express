@@ -54,6 +54,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+  const userId = req.userDb.id;
   const { id } = req.params;
   const { name, phone, role } = req.body;
   try {
@@ -62,6 +63,7 @@ export const updateUser = async (req, res) => {
       phone,
       role,
       is_update: true,
+      updated_by: userId,
     };
     const updateUser = await User.update(id, userData);
 

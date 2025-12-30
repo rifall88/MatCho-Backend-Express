@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
+import productRoute from "./routes/productRoute.js";
 import cors from "cors";
 import admin from "firebase-admin";
 import swaggerUi from "swagger-ui-express";
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

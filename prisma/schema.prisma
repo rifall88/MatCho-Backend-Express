@@ -17,7 +17,7 @@ model User {
   name              String?     @db.VarChar(100)
   username          String?     @unique @db.VarChar(255)
   email             String?     @unique @db.VarChar(255)
-  phone             String?        @db.VarChar(255)
+  phone             String?     @db.VarChar(255)
   role              Role        @default(user)
   updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?
@@ -53,11 +53,11 @@ model Product {
   stock             Int?         @db.Int
   weight            Int?         @db.Int
   image_url         String?      @db.VarChar(255)
-  updated_at        DateTime?   @default(now()) @db.Timestamp(0) @map("updated_at")
+  updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?
   created_at        DateTime?   @default(now()) @db.Timestamp(0) @map("created_at")
   created_by        Int?
-  deleted_at        DateTime?   @default(now()) @db.Timestamp(0) @map("deleted_at")
+  deleted_at        DateTime?   @db.Timestamp(0) @map("deleted_at")
   is_enable         Boolean     @default(true)
   is_update         Boolean     @default(false)
   updated           User?        @relation("productupdated", fields: [updated_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -73,11 +73,11 @@ model Cart {
   product_id        Int?
   subtotal          Int?        @db.Int
   quantity          Int?        @db.Int
-  updated_at        DateTime?   @default(now()) @db.Timestamp(0) @map("updated_at")
+  updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?
   created_at        DateTime?   @default(now()) @db.Timestamp(0) @map("created_at")
   created_by        Int?
-  deleted_at        DateTime?   @default(now()) @db.Timestamp(0) @map("deleted_at")
+  deleted_at        DateTime?   @db.Timestamp(0) @map("deleted_at")
   is_enable         Boolean     @default(true)
   is_update         Boolean     @default(false)
   user              User?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -94,11 +94,11 @@ model Order {
   subtotal          Int?        @db.Int
   status            String?     @db.VarChar(100)
   quantity          Int?        @db.Int
-  updated_at        DateTime?   @default(now()) @db.Timestamp(0) @map("updated_at")
+  updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?
   created_at        DateTime?   @default(now()) @db.Timestamp(0) @map("created_at")
   created_by        Int?
-  deleted_at        DateTime?   @default(now()) @db.Timestamp(0) @map("deleted_at")
+  deleted_at        DateTime?   @db.Timestamp(0) @map("deleted_at")
   is_enable         Boolean     @default(true)
   is_update         Boolean     @default(false)
   user              User?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -119,11 +119,11 @@ model Shipping {
   city              String?     @db.VarChar(100)
   postal_code       Int?        @db.Int
   address           String?     @db.VarChar(255)
-  updated_at        DateTime?   @default(now()) @db.Timestamp(0) @map("updated_at")
+  updated_at        DateTime?   @updatedAt @db.Timestamp(0) @map("updated_at")
   updated_by        Int?
   created_at        DateTime?   @default(now()) @db.Timestamp(0) @map("created_at")
   created_by        Int?
-  deleted_at        DateTime?   @default(now()) @db.Timestamp(0) @map("deleted_at")
+  deleted_at        DateTime?   @db.Timestamp(0) @map("deleted_at")
   is_enable         Boolean     @default(true)
   is_update         Boolean     @default(false)
   user              User?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)

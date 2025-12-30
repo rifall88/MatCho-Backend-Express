@@ -14,6 +14,9 @@
   "tags": [
     {
       "name": "Users"
+    },
+    {
+      "name": "Products"
     }
   ],
   "paths": {
@@ -139,6 +142,43 @@
         ],
         "responses": {
           "200": { "description": "Ok" }
+        }
+      }
+    },
+    "/api/products/": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create product baru",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product_name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "price": { "type": "integer" },
+                  "stock": { "type": "integer" },
+                  "weight": { "type": "integer" },
+                  "image_url": { "type": "string", "format": "binary" },
+                  "Is_matcha": { "type": "boolean", "default": true }
+                },
+                "required": [
+                  "product_name",
+                  "description",
+                  "price",
+                  "stock",
+                  "weight",
+                  "image_url"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created." }
         }
       }
     }
